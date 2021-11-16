@@ -285,12 +285,14 @@ export class WsProvider implements IWsProvider {
    * @param method The RPC methods to execute
    * @param params Encoded paramaters as appliucable for the method
    * @param subscription Subscription details (internally used)
+   * @param isCacheable whether the connection is cacheable
    */
-  public send(
+  public send<T = any>(
     method: string,
-    params: any[],
-    subscription?: SubscriptionHandler
-  ): Promise<any> {
+    params: unknown[],
+    isCacheable?: boolean,
+    subscription?: SubscriptionHandler,
+  ): Promise<T> {
     return new Promise((resolve, reject): void => {
       try {
         const json = this._coder.encodeJson(method, params);
@@ -341,9 +343,7 @@ export class WsProvider implements IWsProvider {
     params: any[],
     callback: ProviderInterfaceCallback
   ): Promise<number | string> {
-    const id = (await this.send(method, params, { callback, type })) as Promise<
-      number | string
-    >;
+    const id = (await this.send(method, params, false, {callback, type})) as unknown as Promise<number | string>;
 
     return id;
   }
@@ -370,7 +370,7 @@ export class WsProvider implements IWsProvider {
 
     delete this._subscriptions[subscription];
 
-    const result = (await this.send(method, [id])) as Promise<boolean>;
+    const result = (await this.send(method, [id])) as unknown as Promise<boolean>;
 
     return result;
   }
