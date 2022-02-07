@@ -209,9 +209,9 @@ function buildCall(
           origin
         };
 
-    const _call = contract.api.rpc.contracts.call;
+    const _contractCallFn = contract.api.rpc.contracts.call;
 
-    const json = await (at ? _call(rpcParams, at) : _call(rpcParams));
+    const json = await (at ? _contractCallFn(rpcParams, at) : _contractCallFn(rpcParams));
 
     const { debugMessage, gasRequired, gasConsumed, result, storageDeposit } = json;
 
