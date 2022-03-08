@@ -1,6 +1,6 @@
 import { AnyNumber } from '@polkadot/types/types';
 import { isString, BN_TEN } from '@polkadot/util';
-import BN from 'bn.js';
+import { BN } from '@polkadot/util';
 const units: string[] = [
   'DOT', // 1 -> 10**10
   'KSM', // 1 -> 10**12

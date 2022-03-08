@@ -1,7 +1,8 @@
 import { bnToBn } from '@polkadot/util';
 import type Contract from '@redspot/patract/contract';
-import BN from 'bn.js';
+import type { BN } from '@polkadot/util';
 import { Account, getAddressOf } from './misc/account';
+
 
 export function supportChangeTokenBalance(Assertion: Chai.AssertionStatic) {
   Assertion.addMethod('changeTokenBalance', function (

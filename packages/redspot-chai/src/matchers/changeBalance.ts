@@ -1,14 +1,16 @@
 import { bnToBn } from '@polkadot/util';
 import { TransactionResponse } from '@redspot/patract/types';
-import BN from 'bn.js';
+import type { BN } from '@polkadot/util';
 import { Account, getAddressOf } from './misc/account';
 import { BalanceChangeOptions, getBalance } from './misc/balance';
+import type { HexString } from '@polkadot/util/types';
 
 export function supportChangeBalance(Assertion: Chai.AssertionStatic) {
+
   Assertion.addMethod('changeBalance', function (
     this: any,
     account: Account,
-    balanceChange: BN | string | number | bigint,
+    balanceChange: HexString | string | number | bigint | BN,
     options: BalanceChangeOptions
   ) {
     const subject = this._obj;

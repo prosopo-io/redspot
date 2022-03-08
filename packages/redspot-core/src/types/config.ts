@@ -14,7 +14,8 @@
 // trying to augment the config types.
 
 import type { ApiOptions } from '@polkadot/api/types';
-import type BN from 'bn.js';
+import type { BN } from '@polkadot/util';
+import type { HexString } from '@polkadot/util/types';
 
 // Networks config
 export type RedspotNetworkAccountsUserConfig = string[] | HDAccountsUserConfig[];
@@ -23,7 +24,7 @@ export interface RedspotNetworkUserConfig {
   endpoint?: string;
   httpHeaders?: Record<string, string>;
   accounts?: RedspotNetworkAccountsUserConfig;
-  gasLimit?: string | number | BN;
+  gasLimit?: HexString | string | number | bigint | BN;
   types?: ApiOptions['types'];
   typesAlias?: ApiOptions['typesAlias'];
   typesBundle?: ApiOptions['typesBundle'];

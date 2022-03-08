@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai';
 import { formatDecimals } from './formatDecimals';
-import BN from 'bn.js';
+import { BN } from '@polkadot/util';
 import { BN_TEN } from '@polkadot/util';
 import { patractChai } from '@redspot/chai/chai';
 

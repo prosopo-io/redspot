@@ -40,6 +40,7 @@
     "gulp": "^4.0.2",
     "gulp-rename": "^2.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-util": "^3.0.8",
     "husky": "^4.3.0",
     "node-gyp": "^8.1.0",
     "prettier": "2.0.5",
@@ -64,6 +65,6 @@
     "test:watch": "polkadot-dev-run-test --watch"
   },
   "dependencies": {
-    "@redspot/chai": "workspace:packages/redspot-chai"
+    "@redspot/chai": "workspace:^"
   }
 }

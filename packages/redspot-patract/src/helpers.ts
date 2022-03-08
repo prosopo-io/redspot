@@ -1,7 +1,7 @@
 import { Abi } from '@polkadot/api-contract';
 import type { AccountId } from '@polkadot/types/interfaces/types';
 import { mnemonicGenerate } from '@polkadot/util-crypto';
-import BN from 'bn.js';
+import { BN } from '@polkadot/util';
 import chalk from 'chalk';
 import log from 'redspot/logger';
 import type {

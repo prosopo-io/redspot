@@ -1,14 +1,15 @@
 import { bnToBn } from '@polkadot/util';
 import type Contract from '@redspot/patract/contract';
-import BN from 'bn.js';
+import type { BN } from '@polkadot/util';
 import { Account, getAddressOf } from './misc/account';
+import type { HexString } from '@polkadot/util/types';
 
 export function supportChangeTokenBalances(Assertion: Chai.AssertionStatic) {
   Assertion.addMethod('changeTokenBalances', function (
     this: any,
     token: Contract,
     accounts: Account[],
-    balanceChanges: (BN | string | number | bigint)[]
+    balanceChanges: (HexString | string | number | bigint | BN)[]
   ) {
     const subject = this._obj;
     const derivedPromise = Promise.all([
