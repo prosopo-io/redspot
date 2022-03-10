@@ -38,7 +38,7 @@ export async function compile(
   const contractPaths = new Set<string>();
 
   const reg = /info:\sSaving\s(.*)\sfor\scontract?/g;
-  let arr: RegExpExecArray;
+  let arr: RegExpExecArray | null;
 
   while ((arr = reg.exec(str)) !== null) {
     const filePath = arr[1].trim();

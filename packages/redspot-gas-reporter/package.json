@@ -7,11 +7,15 @@
   "peerDependencies": {
     "redspot": "^0.13.6"
   },
+  "scripts": {
+    "build": "yarn tsc -b . --verbose"
+  },
   "dependencies": {
     "cli-table3": "^0.6.0",
     "colors": "^1.4.0",
     "deasync": "^0.1.21",
     "lodash": "^4.17.20",
-    "sync-request": "^6.1.0"
+    "sync-request": "^6.1.0",
+    "typescript": "^4.5.4"
   }
 }

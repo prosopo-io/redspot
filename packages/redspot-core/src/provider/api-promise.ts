@@ -11,7 +11,8 @@ export class ApiPromise extends PolkadotApiPromise implements IApiPromise {
       .then((api) => {
         const signer = this._rx.signer as AccountSigner;
 
-        signer.keyring && signer.keyring.setSS58Format(api.registry.chainSS58);
+        if (api.registry.chainSS58)
+          signer.keyring && signer.keyring.setSS58Format(api.registry.chainSS58);
         signer.setUp && signer.setUp();
 
         return api;
@@ -26,7 +27,8 @@ export class ApiPromise extends PolkadotApiPromise implements IApiPromise {
       .then((api) => {
         const signer = this._rx.signer as AccountSigner;
 
-        signer.keyring && signer.keyring.setSS58Format(api.registry.chainSS58);
+        if (api.registry.chainSS58)
+          signer.keyring && signer.keyring.setSS58Format(api.registry.chainSS58);
         signer.setUp && signer.setUp();
 
         return api;

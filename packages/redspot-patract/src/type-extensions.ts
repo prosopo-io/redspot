@@ -8,7 +8,7 @@ import type { SignerOptions } from '@polkadot/api/types';
 import { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { Registry } from '@polkadot/types/types';
 import type { TransactionResponse } from './types';
-
+// @ts-ignore
 declare module 'redspot/types/runtime' {
   interface RuntimeEnvironment {
     patract: {

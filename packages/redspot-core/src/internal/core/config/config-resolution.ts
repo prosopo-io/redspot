@@ -93,7 +93,7 @@ function resolveContractConfig(userConfig: RedspotUserConfig) {
     }
   };
 
-  if (userConfig.contract.solang) {
+  if (userConfig && userConfig.contract && userConfig.contract.solang) {
     result.solang = {
       ..._defaultSolangConfig,
       ...userConfig.contract.solang

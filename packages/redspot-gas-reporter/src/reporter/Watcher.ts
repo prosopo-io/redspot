@@ -12,7 +12,14 @@ function average(nums: number[]) {
   return Math.floor(nums.reduce((a, b) => a + b) / nums.length);
 }
 
+export interface Stats {
+  avg?: number
+  min?: number,
+  max?: number
+}
+
 export class TransactionWatcher {
+  // @ts-ignore
   public start: number;
 
   #provider: WsProvider;
@@ -23,6 +30,7 @@ export class TransactionWatcher {
     tx: string;
   }[];
 
+  // @ts-ignore
   #watchId: string | number;
   #registry: Registry;
   #abiMap: any;
@@ -221,7 +229,7 @@ export class TransactionWatcher {
     const txsWithGas = await this.getGas(_txs);
     const txs = await this.getWeight(txsWithGas);
 
-    const data = txs.filter((data) => {
+    const data: any = txs.filter((data: any) => {
       return data && !data.result.debugMessage && data.result.result.Ok;
     });
 
@@ -292,13 +300,13 @@ export class TransactionWatcher {
         }
 
         const { contract, message } = this.#abiMap[key];
-        const gas = {
+        const gas: Stats = {
           min: undefined,
           max: undefined,
           avg: undefined
         };
 
-        const weight = {
+        const weight: Stats = {
           min: undefined,
           max: undefined,
           avg: undefined

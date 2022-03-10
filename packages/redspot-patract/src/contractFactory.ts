@@ -1,12 +1,13 @@
 import { ApiPromise } from '@polkadot/api';
 import { Abi } from '@polkadot/api-contract';
 import type { AbiConstructor } from '@polkadot/api-contract/types';
-import type { SubmittableExtrinsic } from '@polkadot/api/types';
+import type { QueryableStorageEntry, SubmittableExtrinsic } from '@polkadot/api/types';
 import { Bytes, u128 } from '@polkadot/types';
 import type { Weight } from '@polkadot/types/interfaces';
 import type { CodeHash } from '@polkadot/types/interfaces/contracts';
 import type { AccountId } from '@polkadot/types/interfaces/types';
-import type { AnyJson, ISubmittableResult } from '@polkadot/types/types';
+import type { AnyJson, ISubmittableResult, AnyTuple } from '@polkadot/types/types';
+import type { ApiTypes } from '@polkadot/api-base/types';
 import {
   compactAddLength,
   compactStripLength,
@@ -24,6 +25,7 @@ import type { Signer } from 'redspot/types';
 import { buildTx } from './buildTx';
 import Contract from './contract';
 import { converSignerToAddress } from './helpers';
+import type { U8aLike } from '@polkadot/util/types';
 
 import { BigNumber, CallOverrides, TransactionParams } from './types';
 
@@ -89,19 +91,19 @@ export default class ContractFactory {
     endowment: BigNumber,
     gasLimit: BigNumber,
     storageDepositLimit?: BigNumber,
-    salt?: Uint8Array | string | null
+    salt?: U8aLike
   ) => {
     const hasStorageDeposit =
       this.api.tx.contracts.instantiateWithCode.meta.args.length === 6;
 
+    let dataConcat = salt ? u8aConcat(data, salt) : data
     return hasStorageDeposit
       ? this.api.tx.contracts.instantiateWithCode(
           endowment,
           gasLimit,
           storageDepositLimit,
           wasmCode,
-          u8aConcat(data, salt),
-          // @ts-ignore
+          dataConcat,
           salt
         )
       : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -110,7 +112,7 @@ export default class ContractFactory {
           endowment,
           gasLimit,
           wasmCode,
-          u8aConcat(data, salt),
+          dataConcat,
           salt
         );
   };
@@ -120,19 +122,20 @@ export default class ContractFactory {
     data: string | Uint8Array | Bytes,
     endowment: BigNumber,
     gasLimit: BigNumber,
-    salt?: Uint8Array | string | null
+    salt?: U8aLike
   ) => {
     const withSalt = this.api.tx.contracts.instantiate.meta.args.length === 5;
     const hasStorageDeposit =
       this.api.tx.contracts.instantiateWithCode.meta.args.length === 6;
     const storageDepositLimit = null;
 
+    let dataConcat = salt ? u8aConcat(data, salt) : data
     const tx = withSalt
       ? this.api.tx.contracts.instantiate(
           endowment,
           gasLimit,
           codeHash,
-          u8aConcat(data, salt),
+          dataConcat,
           salt
         )
       : hasStorageDeposit
@@ -141,7 +144,7 @@ export default class ContractFactory {
           gasLimit,
           storageDepositLimit,
           codeHash,
-          u8aConcat(data, salt),
+          dataConcat,
           //@ts-ignore
           salt
         )
@@ -516,7 +519,7 @@ export default class ContractFactory {
 
     console.log('deployedAddress:', deployedAddress.toString());
 
-    const contractInfo = await this.api.query.contracts.contractInfoOf(
+    const contractInfo: any = await this.api.query.contracts.contractInfoOf(
       deployedAddress
     );
 

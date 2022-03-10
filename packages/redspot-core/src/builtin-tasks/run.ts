@@ -35,7 +35,7 @@ task(TASK_RUN, 'Runs a user-defined script after compiling the project')
 
       try {
         process.exitCode = await runScriptWithRedspot(redspotArguments, script);
-      } catch (error) {
+      } catch (error: any) {
         throw new RedspotError(
           ERRORS.BUILTIN_TASKS.RUN_SCRIPT_ERROR,
           {

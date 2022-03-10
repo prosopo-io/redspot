@@ -14,6 +14,8 @@
     "noUnusedLocals": false,
     "noImplicitThis": false,
     "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strict": false,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,

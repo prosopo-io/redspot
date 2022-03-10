@@ -27,7 +27,7 @@ export class Artifacts implements IArtifacts {
       }
 
       return artifactPath;
-    } catch (error) {
+    } catch (error: any) {
       if (
         typeof error.message === 'string' &&
         error.message.includes('no matching file exists')
@@ -61,7 +61,7 @@ export class Artifacts implements IArtifacts {
       }
 
       return trueCaseArtifactPath;
-    } catch (error) {
+    } catch (error: any) {
       if (
         typeof error.message === 'string' &&
         error.message.includes('no matching file exists')
@@ -117,7 +117,7 @@ export class Artifacts implements IArtifacts {
   }
 
   public async copyToArtifactDir(originPath: string[] | string): Promise<void> {
-    const pathList = [].concat(originPath);
+    const pathList = new Array<string>().concat(originPath);
 
     for (const filepath of pathList) {
       fsExtra.ensureDirSync(this._artifactsPath);

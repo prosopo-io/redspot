@@ -21,7 +21,7 @@ export interface TransactionResponse {
     data?: any;
   };
   result: SubmittableResult;
-  events?: DecodedEvent[];
+  events?: DecodedEvent[] | null;
 }
 
 export type BigNumber = BN | number | string | bigint;

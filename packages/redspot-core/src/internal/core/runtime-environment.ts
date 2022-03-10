@@ -1,5 +1,5 @@
 import debug from 'debug';
-import logger from 'redspot/logger';
+import logger from '../../logger';
 import { createNetwork } from '../../provider';
 import {
   Artifacts as IArtifacts,
@@ -251,7 +251,7 @@ export class Environment implements RedspotRuntimeEnvironment {
           if (resolvedArgumentValue !== undefined) {
             values[paramName] = resolvedArgumentValue;
           }
-        } catch (error) {
+        } catch (error: any) {
           errors.push(error);
         }
 

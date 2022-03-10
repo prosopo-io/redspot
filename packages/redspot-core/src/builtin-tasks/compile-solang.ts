@@ -42,7 +42,7 @@ subtask(TASK_COMPILE_SOLANG_INPUT)
       { config }
     ) => {
       const input = await getCompilerInput(
-        config.contract.solang,
+        config.contract.solang!,
         sourcePattern
       );
 

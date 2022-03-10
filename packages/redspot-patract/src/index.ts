@@ -1,6 +1,6 @@
 import { extendEnvironment } from 'redspot/config';
 import { lazyObject } from 'redspot/plugins';
-import Contract from './contract';
+import { default as Contract } from './contract';
 import ContractFactory from './contractFactory';
 import { getContractAt, getContractFactory, getRandomSigner } from './helpers';
 import './type-extensions';

@@ -5,12 +5,18 @@
   "main": "index.js",
   "types": "index.d.ts",
   "peerDependencies": {
-    "redspot": "^0.13.6"
+    "redspot": "workspace:^"
+  },
+  "scripts": {
+    "build": "yarn tsc -b . --verbose"
   },
   "dependencies": {
     "@polkadot/api": "^7.10.1",
     "@polkadot/api-contract": "^7.10.1",
-    "chai-as-promised": "^7.1.1"
+    "@redspot/patract": "workspace:^",
+    "chai-as-promised": "^7.1.1",
+    "redspot": "workspace:^",
+    "typescript": "4.5.4"
   },
   "devDependencies": {
     "@types/chai-as-promised": "^7.1.5"

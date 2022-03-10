@@ -68,7 +68,7 @@ export async function isLocalSourceName(
 
   try {
     await getPathTrueCase(projectRoot, firstDirOrFileName);
-  } catch (error) {
+  } catch (error: any) {
     if (
       RedspotError.isRedspotErrorType(error, ERRORS.SOURCE_NAMES.FILE_NOT_FOUND)
     ) {
@@ -194,9 +194,9 @@ async function getPathTrueCase(fromDir: string, p: string): Promise<string> {
     const tcp = await trueCasePath(p, fromDir);
 
     return normalizeSourceName(path.relative(fromDir, tcp));
-  } catch (error) {
+  } catch (error: any) {
     if (
-      typeof error.message === 'string' &&
+      typeof error.message as string === 'string' &&
       error.message.includes('no matching file exists')
     ) {
       throw new RedspotError(

@@ -43,7 +43,7 @@ export async function getRandomSigner(
         api.tx.balances.transfer(keyringPair.address, amount),
         fromAddress
       );
-    } catch (error) {
+    } catch (error: any) {
       log.error(`Transfer failed`);
       log.error(error.error);
       throw error;

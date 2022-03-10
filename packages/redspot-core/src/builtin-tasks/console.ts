@@ -22,7 +22,7 @@ task(TASK_CONSOLE, 'Opens a redspot console')
       await fsExtra.ensureDir(config.paths.cache);
       const historyFile = path.join(config.paths.cache, 'console-history.txt');
 
-      const nodeArgs = [];
+      const nodeArgs: string[] = [];
 
       if (semver.gte(process.version, '10.0.0')) {
         nodeArgs.push('--experimental-repl-await');

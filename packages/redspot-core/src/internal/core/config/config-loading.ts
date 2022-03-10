@@ -130,7 +130,7 @@ export function analyzeModuleNotFoundError(error: any, configPath: string) {
   const throwingFile = stackTrace
     .filter((x) => x.file !== null)
     .map((x) => x.file)
-    .find((x) => path.isAbsolute(x));
+    .find((x) => path.isAbsolute(x || ''));
 
   if (throwingFile === null || throwingFile === undefined) {
     return;

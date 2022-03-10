@@ -82,7 +82,7 @@ export class Signer implements PolkadotSigner {
           (pair as LocalKeyringPair).suri = account;
 
           pair.lock = (): void => {};
-        } catch (error) {
+        } catch (error: any) {
           log.error(error.message);
           throw new RedspotError(ERRORS.GENERAL.BAD_SURI, { uri: account });
         }
@@ -109,7 +109,7 @@ export class Signer implements PolkadotSigner {
               this.keyring.addPair(childPair)
             }
           }
-        } catch (error) {
+        } catch (error: any) {
           log.error(error.message)
           throw new RedspotError(ERRORS.GENERAL.BAD_SURI, { uri: _account.mnemonic });
         }

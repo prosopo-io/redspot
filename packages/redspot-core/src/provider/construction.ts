@@ -62,7 +62,8 @@ export function createNetwork(
 
   const registry = api.registry;
 
-  signer.init(registry, networkConfig.accounts);
+  if (networkConfig.accounts)
+    signer.init(registry, networkConfig.accounts);
 
   const gasLimit =
     networkConfig.gasLimit !== undefined

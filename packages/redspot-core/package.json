@@ -2,11 +2,14 @@
   "name": "redspot",
   "version": "0.13.6",
   "author": "Patract Labs",
-  "main": "internal/lib/redspot-lib.js",
-  "types": "internal/lib/redspot-lib.d.ts",
-  "bin": "internal/cli/cli.js",
+  "main": "/usr/src/redspot/build/redspot-core/internal/lib/redspot-lib.js",
+  "types": "/usr/src/redspot/packages/redspot-core/internal/lib/redspot-lib.d.ts",
+  "bin": "/usr/src/redspot/build/internal/cli/cli.js",
   "engines": {
     "node": ">=8.2.0"
+  },
+  "scripts": {
+    "build": "yarn tsc -b . --verbose"
   },
   "dependencies": {
     "@polkadot/api": "^7.10.1",

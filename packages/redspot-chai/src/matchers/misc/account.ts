@@ -1,14 +1,14 @@
 import { Signer } from 'redspot/provider/signer';
-import Contract from '@redspot/patract/contract';
+import { default as Contract } from '@redspot/patract/contract';
 
-export type Account = Signer | Contract | string;
+export type Account = Signer | typeof Contract | string;
 
 export function isSigner(account: Account): account is Signer {
   return account instanceof Signer;
 }
 
 export function isContract(account: Account): account is Contract {
-  return account instanceof Contract;
+  return account instanceof Contract.prototype.constructor;
 }
 
 export function isAddress(account: Account): account is string {

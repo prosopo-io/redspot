@@ -152,7 +152,8 @@ function decodeEvents(
     const decoded = abi.decodeEvent(event.event.data[1] as any) as Partial<
       DecodedEvent
     >;
-    decoded.name = stringUpperFirst(stringCamelCase(decoded.event.identifier));
+    if (decoded.event)
+      decoded.name = stringUpperFirst(stringCamelCase(decoded.event.identifier));
 
     return decoded as DecodedEvent;
   });
@@ -191,12 +192,14 @@ function buildCall(
     Object.keys(params).forEach((key) => {
       try {
         let print: string;
-        if (isU8a(callParams[key])) {
-          print = u8aToHex(callParams[key]);
-        } else {
-          print = callParams[key].toString();
+        if (callParams) {
+          if (isU8a(callParams[key])) {
+            print = u8aToHex(callParams[key]);
+          } else {
+            print = callParams[key].toString();
+          }
+          log.info(`${key}: `, print);
         }
-        log.info(`${key}: `, print);
       } catch {}
     });
 
@@ -216,7 +219,7 @@ function buildCall(
 
     const _contractCallFn = contract.api.rpc.contracts.call;
 
-    const json = await (at ? _contractCallFn(rpcParams, at) : _contractCallFn(rpcParams));
+    const json: any = await (at ? _contractCallFn(rpcParams, at) : _contractCallFn(rpcParams));
 
     const {
       debugMessage,
@@ -286,13 +289,14 @@ function buildSend(
 
     log.info('');
     log.info(chalk.magenta(`===== Exec ${messageName} =====`));
-    Object.keys(callParams).forEach((key) => {
+
+    Object.keys(callParams!).forEach((key) => {
       try {
         let print: string;
-        if (isU8a(callParams[key])) {
-          print = u8aToHex(callParams[key]);
+        if (isU8a(callParams![key])) {
+          print = u8aToHex(callParams![key]);
         } else {
-          print = callParams[key].toString();
+          print = callParams![key].toString();
         }
         log.info(`${key}: `, print);
       } catch {}
@@ -310,7 +314,7 @@ function buildSend(
     });
 
     response.events = decodeEvents(
-      callParams.dest,
+      callParams!.dest,
       response.result,
       contract.abi
     );
@@ -458,7 +462,7 @@ export default class Contract {
 
   /**
    * Query at specific block
-   * 
+   *
    * @param at string | Uint8Array
    * @param abi AbiMessage
    * @returns ContractFunction\<ContractCallOutcome\>

@@ -47,7 +47,7 @@ export function getEnvRedspotArguments(
     if (rawValue !== undefined) {
       try {
         envArgs[paramName] = definition.type.parse(paramName, rawValue);
-      } catch (error) {
+      } catch (error: any) {
         throw new RedspotError(
           ERRORS.ARGUMENTS.INVALID_ENV_VAR_VALUE,
           {

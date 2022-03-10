@@ -186,7 +186,7 @@ export const inputFile: CLIArgumentType<string> = {
         // tslint:disable-next-line only-redspot-error
         throw new Error(`${strValue} is a directory, not a file`);
       }
-    } catch (error) {
+    } catch (error : any) {
       throw new RedspotError(
         ERRORS.ARGUMENTS.INVALID_INPUT_FILE,
         {
@@ -212,7 +212,7 @@ export const inputFile: CLIArgumentType<string> = {
   validate: (argName: string, value: any): void => {
     try {
       inputFile.parse(argName, value);
-    } catch (error) {
+    } catch (error: any) {
       // the input value is considered invalid, throw error.
       throw new RedspotError(
         ERRORS.ARGUMENTS.INVALID_VALUE_FOR_TYPE,
@@ -232,7 +232,7 @@ export const json: CLIArgumentType<any> = {
   parse(argName: string, strValue: string): any {
     try {
       return JSON.parse(strValue);
-    } catch (error) {
+    } catch (error: any) {
       throw new RedspotError(
         ERRORS.ARGUMENTS.INVALID_JSON_ARGUMENT,
         {

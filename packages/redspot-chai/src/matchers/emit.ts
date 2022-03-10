@@ -1,13 +1,14 @@
 import type { AccountId } from '@polkadot/types/interfaces';
 import { stringCamelCase, stringUpperFirst } from '@polkadot/util';
 import { addressEq } from '@polkadot/util-crypto';
-import type Contract from '@redspot/patract/contract';
+import Contract from '@redspot/patract/contract'
 import { TransactionResponse } from '@redspot/patract/types';
+declare type ContractType = typeof Contract
 
 export function supportEmit(Assertion: Chai.AssertionStatic) {
   Assertion.addMethod('emit', function (
     this: any,
-    contract: Contract,
+    contract: ContractType,
     eventName: string
   ) {
     const promise = this._obj;

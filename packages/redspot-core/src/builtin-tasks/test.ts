@@ -81,9 +81,10 @@ task(TASK_TEST, 'Runs mocha tests')
       { network, run }
     ) => {
       if (!noCompile) {
+
         await run(TASK_COMPILE, {
           quiet: true,
-          sourcePattern: sourcePattern ? [].concat(sourcePattern) : []
+          sourcePattern: sourcePattern ? new Array<string>().concat(sourcePattern) : []
         });
       }
 

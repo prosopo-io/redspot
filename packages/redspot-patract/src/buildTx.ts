@@ -57,7 +57,7 @@ export async function buildTx(
                           ? `(${error.docs.join('')})`
                           : error.docs || ''
                       }`;
-                    } catch (error) {
+                    } catch (error: any) {
                       // swallow
                     }
                   }

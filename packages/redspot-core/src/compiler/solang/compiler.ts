@@ -30,7 +30,7 @@ export class Compiler {
     return true;
   }
 
-  public async run(inputDir: string, outPutdir: string): Promise<string> {
+  public async run(inputDir: string, outPutdir: string): Promise<string | undefined> {
     return new Promise((resolve, reject) => {
       fs.ensureDirSync(path.resolve(outPutdir));
 
