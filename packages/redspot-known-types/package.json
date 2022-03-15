@@ -1,14 +1,14 @@
 {
   "name": "@redspot/known-types",
-  "version": "0.13.2-1",
+  "version": "0.13.6",
   "author": "Patract Labs",
   "main": "index.js",
   "types": "index.d.ts",
   "peerDependencies": {
-    "redspot": "^0.13.2-1"
+    "redspot": "^0.13.6"
   },
   "dependencies": {
-    "@polkadot/api": "^7.2.1",
-    "@polkadot/apps-config": "^0.95.1"
+    "@polkadot/api": "^7.10.1",
+    "@polkadot/apps-config": "^0.103.1"
   }
 }
