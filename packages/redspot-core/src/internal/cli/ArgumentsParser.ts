@@ -137,11 +137,11 @@ export class ArgumentsParser {
         continue;
       }
 
-      if (!this._isCLAParamName(arg, taskDefinition.paramDefinitions)) {
-        throw new RedspotError(ERRORS.ARGUMENTS.UNRECOGNIZED_PARAM_NAME, {
-          param: arg
-        });
-      }
+      // if (!this._isCLAParamName(arg, taskDefinition.paramDefinitions)) {
+      //   throw new RedspotError(ERRORS.ARGUMENTS.UNRECOGNIZED_PARAM_NAME, {
+      //     param: arg
+      //   });
+      // }
 
       i = this._parseArgumentAt(
         rawCLAs,
@@ -218,23 +218,25 @@ export class ArgumentsParser {
       });
     }
 
-    if (definition.isFlag) {
-      parsedArguments[paramName] = true;
-    } else {
-      index++;
-      const value = rawCLAs[index];
+    if (definition) {
+      if (definition.isFlag) {
+        parsedArguments[paramName] = true;
+      } else {
+        index++;
+        const value = rawCLAs[index];
 
-      if (value === undefined) {
-        throw new RedspotError(ERRORS.ARGUMENTS.MISSING_TASK_ARGUMENT, {
-          param: ArgumentsParser.paramNameToCLA(paramName)
-        });
+        // if (value === undefined) {
+        //   throw new RedspotError(ERRORS.ARGUMENTS.MISSING_TASK_ARGUMENT, {
+        //     param: ArgumentsParser.paramNameToCLA(paramName)
+        //   });
+        // }
+
+        // We only parse the arguments of non-subtasks, and those only
+        // accept CLIArgumentTypes.
+        const type = definition.type as CLIArgumentType<any>;
+
+        parsedArguments[paramName] = type.parse(paramName, value);
       }
-
-      // We only parse the arguments of non-subtasks, and those only
-      // accept CLIArgumentTypes.
-      const type = definition.type as CLIArgumentType<any>;
-
-      parsedArguments[paramName] = type.parse(paramName, value);
     }
 
     return index;
