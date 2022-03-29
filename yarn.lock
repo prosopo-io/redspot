@@ -2380,7 +2380,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-asmjs@npm:^4.5.1":
+"@polkadot/wasm-crypto-asmjs@npm:4.5.1":
   version: 4.5.1
   resolution: "@polkadot/wasm-crypto-asmjs@npm:4.5.1"
   dependencies:
@@ -2389,7 +2389,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-wasm@npm:^4.5.1":
+"@polkadot/wasm-crypto-wasm@npm:4.5.1":
   version: 4.5.1
   resolution: "@polkadot/wasm-crypto-wasm@npm:4.5.1"
   dependencies:
