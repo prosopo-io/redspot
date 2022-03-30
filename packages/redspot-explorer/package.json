@@ -7,9 +7,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "http": "^0.0.1-security",
     "path": "^0.12.7",
     "socket.io": "^4.0.1",
-    "socket.io-client": "^4.0.1",
-    "http": "^0.0.1-security"
+    "socket.io-client": "^4.0.1"
   }
 }

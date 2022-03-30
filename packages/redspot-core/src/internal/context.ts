@@ -33,10 +33,11 @@ export class RedspotContext {
 
   public static getRedspotContext(): RedspotContext {
     const globalWithRedspotContext = global as GlobalWithRedspotContext;
-    const ctx = globalWithRedspotContext.__redspotContext;
+    let ctx = globalWithRedspotContext.__redspotContext;
 
     if (ctx === undefined) {
-      throw new RedspotError(ERRORS.GENERAL.CONTEXT_NOT_CREATED);
+      ctx = new RedspotContext();
+      //throw new RedspotError(ERRORS.GENERAL.CONTEXT_NOT_CREATED);
     }
 
     return ctx;
